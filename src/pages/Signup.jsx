@@ -1,22 +1,26 @@
-import { useActionState } from "react"
+import { useActionState, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { useAuth } from "../context/AuthContext"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faE, faEnvelope } from '@fortawesome/free-solid-svg-icons'
 export default function Signup() {
 
     const {signUpNewUser} = useAuth()
     const navigate = useNavigate()
+    const [isActive, setIsActive] = useState(false)
 
     const [error, submitAction, isPending] = useActionState(async (previousState, formData) => {
         const email = formData.get('email')
         const password = formData.get('password')
         const name = formData.get('name')
         
+        
         const {success, data, error:signUpError} = await signUpNewUser(email, password, name)
 
         if(signUpError) {
             return new Error(signUpError)
         }
-        
+        setIsActive(true)
         if(success && data?.session) {
             navigate('/watchlist', {replace: true})
             return null
@@ -25,7 +29,7 @@ export default function Signup() {
         return null
     }, null)
 
-    return(
+    return !isActive ? (
         <div className="SigninPage">
             <div className="signin-form-container">
                 <form className="form-container" action={submitAction}>
@@ -48,6 +52,13 @@ export default function Signup() {
                     {error && <div>{error.message}</div>}
                 </form>
             </div>
-        </div>
-    )
+
+           
+        </div>) :
+
+        ( <div className="SigninPage form-container email-container">
+            <FontAwesomeIcon className="envelope" icon={faEnvelope}/>
+            <span className="email">Check you email for the Conformation mail</span>
+        </div>)
+    
 }
