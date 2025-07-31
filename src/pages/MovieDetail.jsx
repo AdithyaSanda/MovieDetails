@@ -48,6 +48,10 @@ export default function MovieDetail({backdropCount, posterCount, videoCount}) {
     }, [location])
 
     useEffect(() => {
+        window.scrollTo(0,0)
+    },[location])
+
+    useEffect(() => {
         fetch(`https://api.themoviedb.org/3/${type === 'movie' ? 'movie' : 'tv'}/${params.id}?language=en-US`, options)
             .then(res => res.json())
             .then(data => {
