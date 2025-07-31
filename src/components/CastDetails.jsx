@@ -30,11 +30,7 @@ export default function CastDetails({id}) {
 
     const directors = crew.filter(c => c.job === 'Director')
 
-    // <>
-    //     <span className="director-heading">Director</span>
-    //     <span key={c.id} className="director-name">{c.name}</span>
-    // </>
-    
+
     return(
         <>
             <div className="director-detail">
@@ -53,6 +49,7 @@ export default function CastDetails({id}) {
                             <div className="cast-details" >
                                 {c.profile_path ? <img className="cast-profile" src={`https://image.tmdb.org/t/p/original${c.profile_path}`} alt="" /> : <img className="cast-profile" src={`https://placehold.co/160x160?text=${c.name}`} alt="" />}
                                 <span className="cast-name">{c.name}</span>
+                                <span className="cast-name cast-character">{c.character}</span>
                             </div>
                         </div>
                     ))}

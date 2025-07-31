@@ -720,6 +720,13 @@ a {
   font-weight: bold;
 }
 
+.cast-character {
+  font-size: 0.9rem;
+  margin-top: 5px;
+  color: #888;
+  margin-bottom: 10px;
+}
+
 
 @media (min-width: 1228px) {
   .menu > button {
