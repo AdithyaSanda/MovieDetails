@@ -12,6 +12,7 @@ import Video from "./components/Video";
 import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
 import ProtectedRoute from "./components/ProtectedRoute";
+import CastPage from "./pages/CastPage";
 
 
 
@@ -61,6 +62,7 @@ export default function App() {
                     <Route path="posters" element={<Posters id={location.pathname.slice(7,11)} setPosterCount={setPosterCount}/>}/>
                     <Route path="videos" element={<Video id={location.pathname.slice(7,11)} setVideoCount={setVideoCount}/>}/>
                 </Route>
+                <Route path="/person/:id" element={<CastPage />}/>
                 <Route path="/watchlist" element={
                     <ProtectedRoute>
                         <Watchlist />

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 
 export default function CastDetails({id}) {
     
@@ -47,9 +47,11 @@ export default function CastDetails({id}) {
                     {cast.map(c => (
                         <div key={c.id}>  
                             <div className="cast-details" >
-                                {c.profile_path ? <img className="cast-profile" src={`https://image.tmdb.org/t/p/original${c.profile_path}`} alt="" /> : <img className="cast-profile" src={`https://placehold.co/160x160?text=${c.name}`} alt="" />}
-                                <span className="cast-name">{c.name}</span>
-                                <span className="cast-name cast-character">{c.character}</span>
+                                <Link to={`/person/${c.id}`}>
+                                    {c.profile_path ? <img className="cast-profile" src={`https://image.tmdb.org/t/p/original${c.profile_path}`} alt="" /> : <img className="cast-profile" src={`https://placehold.co/160x160?text=${c.name}`} alt="" />}
+                                    <span className="cast-name">{c.name}</span>
+                                    <span className="cast-name cast-character">{c.character}</span>
+                                </Link>
                             </div>
                         </div>
                     ))}
