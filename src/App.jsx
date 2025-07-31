@@ -13,6 +13,7 @@ import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
 import ProtectedRoute from "./components/ProtectedRoute";
 import CastPage from "./pages/CastPage";
+import ErrorPage from "./pages/ErrorPage";
 
 
 
@@ -69,7 +70,7 @@ export default function App() {
                     </ProtectedRoute>
                     
                 } />
-               
+               <Route path="*" element={<ErrorPage />}/>
                 
             </Routes>
             

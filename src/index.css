@@ -803,7 +803,19 @@ a {
   margin-top: 20px;
 }
 
+.error-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+}
+
 @media (min-width: 1228px) {
+
+  .error-page {
+    font-size: 3rem;
+  }
+
   .menu > button {
     display: none;
   }
