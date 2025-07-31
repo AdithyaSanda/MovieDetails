@@ -1400,7 +1400,8 @@ a {
   .acted-in {
     position: relative;
     top: -350px;
-    left: 180px;
+    left: 355px;
+    margin-left: 15px;
   }
 
 

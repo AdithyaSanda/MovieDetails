@@ -57,7 +57,7 @@ export default function CastPage() {
             </div>
 
             <div className="bio-container">
-                <div className="biography-container">
+                {castDetails.biography && <div className="biography-container">
                     <span className="biography-heading">Biography</span>
                     <ShowMoreText
                         lines={4}
@@ -67,13 +67,13 @@ export default function CastPage() {
                         {castDetails.biography}
                     </ShowMoreText>
                     {/* {<p className="biography">{castDetails.biography}</p>} */}
-                </div>
-                <div className="also_known_as">
+                </div>}
+                {castDetails.also_known_as?.length && <div className="also_known_as">
                     <span className="biography-heading also">Also Known As</span>
                     {castDetails.also_known_as?.map(name => (
                         <span className="also_name">{name}</span>
                     ))}
-                </div>
+                </div>}
                 <div className="popular-container recommendation-container acted-in">
                     <span className="biography-heading performed">Performed in</span>
                     <div className="recommended performed-posters">
