@@ -6,6 +6,21 @@ body {
   margin: 0;
 }
 
+.logo {
+  width: 60px;
+  margin-left: -20px;
+}
+
+.logo-name {
+  color: #fca311;
+  margin-left: -10px;
+  margin-top: 22px;
+}
+
+.logo-container {
+  display: flex;
+}
+
 .nav-bar {
   display: flex;
   justify-content: space-between;
@@ -47,7 +62,7 @@ body {
 }
 
 .side-bar {
-  background-color: #232323;
+  background-color: #111111;
   height: 100%;
   width: 65%;
   position: fixed;
@@ -61,6 +76,11 @@ body {
   left: 0;
 }
 
+.nav-logo {
+  position: relative;
+  top: 6px;
+  left: 22px;
+}
 
 .close > button {
   border: none;
@@ -70,9 +90,10 @@ body {
   position: absolute;
   right: 0;
   padding: 0.75em;
-  display: block;
+  display: flex;
   cursor: pointer;
   box-sizing: border-box;
+  top: 10px;
 }
 
 .menu-items {

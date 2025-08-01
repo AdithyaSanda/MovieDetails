@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react'
 import NavItems from './NavItems'
 import Suggestions from './Suggestions'
 import { useAuth } from '../context/AuthContext'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 
 export default function Header({isDesktop, viewType, setViewType, isGame, setIsGame}) {
@@ -49,7 +49,13 @@ export default function Header({isDesktop, viewType, setViewType, isGame, setIsG
                     <button onClick={() => setIsOpen(true)}>
                         <FontAwesomeIcon icon={faBars} />
                     </button>
-                    <span>Logo</span>
+                    <Link to={'/movies'}>
+                        <div className='logo-container'>
+                            <img className='logo' src="src/assets/logo1.png" alt="nextWatch" />
+                            <span className='logo-name'>NextWatch</span>
+                        </div>
+                    </Link>
+                    
                 </div>
 
                 {isDesktop && <NavItems />}

@@ -66,14 +66,13 @@ export default function CastPage() {
                     >
                         {castDetails.biography}
                     </ShowMoreText>
-                    {/* {<p className="biography">{castDetails.biography}</p>} */}
                 </div>}
-                {castDetails.also_known_as?.length && <div className="also_known_as">
+                {castDetails.also_known_as?.length ? <div className="also_known_as">
                     <span className="biography-heading also">Also Known As</span>
                     {castDetails.also_known_as?.map(name => (
                         <span className="also_name">{name}</span>
                     ))}
-                </div>}
+                </div> : null}
                 <div className="popular-container recommendation-container acted-in">
                     <span className="biography-heading performed">Performed in</span>
                     <div className="recommended performed-posters">
