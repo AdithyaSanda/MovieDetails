@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import {Link, useParams} from 'react-router-dom'
 import ShowMoreText from 'react-show-more-text'
+import LoadingPage from "./LoadingPage";
 
 
 export default function CastPage() {
 
     const [castDetails, setCastDetails] = useState([])
     const [movieList, setMovieList] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
 
     const params = useParams()
 
@@ -34,26 +36,27 @@ export default function CastPage() {
             .then(res => {
                 console.log(res)
                 setMovieList(res.cast.filter(movie => movie.poster_path !== null))
+                setIsLoading(false)
             })
             .catch(err => console.error(err));
     }, [])
 
     console.log(castDetails)
 
-    return(
+    return !isLoading ? (
         <>
             
             <div className="cast-name-photo">
-                <img className="cast-photo" src={`https://image.tmdb.org/t/p/original${castDetails.profile_path}`} alt="" />
+                {castDetails.profile_path ? <img className="cast-photo" src={`https://image.tmdb.org/t/p/original${castDetails.profile_path}`} alt="" /> : <img className="cast-photo" src={`https://placehold.co/150x225?text=${castDetails.name}`} alt="" />}
                 <h1 className="cast-title">{castDetails.name}</h1>
             </div>
             <div className="cast-detail">
                 <span className="heading">Known For</span>
-                <span className="value">{castDetails.known_for_department}</span>
+                {castDetails.known_for_department ? <span className="value">{castDetails.known_for_department}</span> : <span className="value">N/A</span>}
                 <span className="heading">Birthday</span>
-                <span className="value">{castDetails.birthday}</span>
+                {castDetails.birthday ? <span className="value">{castDetails.birthday}</span> : <span className="value">N/A</span>}
                 <span className="heading">Place of Birth</span>
-                <span className="value">{castDetails.place_of_birth}</span>
+                {castDetails.place_of_birth ? <span className="value">{castDetails.place_of_birth}</span> : <span className="value">N/A</span>}
             </div>
 
             <div className="bio-container">
@@ -91,5 +94,7 @@ export default function CastPage() {
             
         </>
         
+    ) : (
+        <LoadingPage />
     )
 }
