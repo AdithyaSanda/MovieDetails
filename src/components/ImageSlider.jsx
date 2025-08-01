@@ -1,10 +1,12 @@
 import { useState, useEffect} from 'react'
 import { useSwipeable } from "react-swipeable";
 import { Link } from 'react-router-dom'
+import Skeleton from "react-loading-skeleton";
 export default function ImageSlider({viewType, heading}) {
 
 
     const [result, setResult] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
 
     const options = {
         method: 'GET',
@@ -23,7 +25,7 @@ export default function ImageSlider({viewType, heading}) {
             .then(data => {
                 console.log(data)
                 setResult(data.results.filter(result => result.backdrop_path))
-                
+                setIsLoading(false)
 
             })
             .catch(err => console.error(err));
@@ -58,7 +60,11 @@ export default function ImageSlider({viewType, heading}) {
 
     return(
         <div className='top-container'{...handlers}>
-            <div className="now-playing-container" >
+            {isLoading && <div className='skeleton-container'>
+                <Skeleton height={250} baseColor="#313131" highlightColor="#525252"/>
+            </div>}
+            {!isLoading && <div className="now-playing-container" >
+                
                 {result.map((res, index) => (
                     <Link key={res.id} to={`/${viewType === 'tv' ? 'show' : 'movie'}s/${res.id}`}>
                         <div className="now-playing" style={{translate: `${-100 * current}%`}}>
@@ -67,7 +73,7 @@ export default function ImageSlider({viewType, heading}) {
                         </div>
                     </Link>
                 ))}
-            </div>
+            </div>}
         </div>
         
     )

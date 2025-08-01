@@ -4,6 +4,7 @@ import { Link } from "react-router-dom"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { useAuth } from "../context/AuthContext"
+import LoadingPage from "./LoadingPage"
 
 
 export default  function Watchlist() {
@@ -11,6 +12,7 @@ export default  function Watchlist() {
     const [watchlist, setWatchlist] = useState([])
     const [list, setList] = useState([])
     const [userId, setUserId] = useState()
+    const [isLoading, setIsLoading] = useState(true)
 
     const {getUserId} = useAuth()
 
@@ -75,6 +77,7 @@ export default  function Watchlist() {
                 )
 
                 setList(responses)
+                setIsLoading(false)
             }
             catch(error) {
                 console.error(error)
@@ -133,7 +136,7 @@ export default  function Watchlist() {
     }
 
     console.log(list)
-    return(
+    return !isLoading ? (
         <>
             <h1 className="watchlist-heading">Watchlist</h1>  
             <div className="watchlist-container">
@@ -169,5 +172,7 @@ export default  function Watchlist() {
         </>
         
         
+    ) : (
+        <LoadingPage />
     )
 }

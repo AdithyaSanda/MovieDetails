@@ -8,6 +8,7 @@ import Reviews from "../components/Reviews";
 import { useAuth } from "../context/AuthContext";
 import supabase from "../supabase-client";
 import Recommendations from "../components/Recommendations";
+import LoadingPage from "./LoadingPage";
 
 
 export default function MovieDetail({backdropCount, posterCount, videoCount}) {
@@ -22,6 +23,7 @@ export default function MovieDetail({backdropCount, posterCount, videoCount}) {
     const [isBackdropActive, setIsBackdropActive] = useState(false)
     const [isPosterActive, setIsPosterActive] = useState(false)
     const [isVideoActive, setIsVideoActive] = useState(false)
+    const [isLoading, setIsLoading] = useState(true)
     
 
     const navigate = useNavigate()
@@ -103,6 +105,7 @@ export default function MovieDetail({backdropCount, posterCount, videoCount}) {
                         <Recommendations id={data.id} viewType={type}/>
                     </>
                 )
+                setIsLoading(false)
             })
             .catch(err => console.error(err));
     }, [params, type])
@@ -160,7 +163,7 @@ export default function MovieDetail({backdropCount, posterCount, videoCount}) {
 
     const isInsideWatchlist = listCount > 0
 
-    return(
+    return !isLoading ? (
         <>
             {detailHtml}
             <button className="back-btn" onClick={() => {type === 'movie' ? navigate("/movies") : navigate("/shows")}}>
@@ -170,5 +173,7 @@ export default function MovieDetail({backdropCount, posterCount, videoCount}) {
                 <FontAwesomeIcon icon={faBookmark}/>
             </button>
         </>
+    ) : (
+        <LoadingPage />
     )
 }
