@@ -19,7 +19,6 @@ export default function Recommendations({id, viewType}) {
         fetch(`https://api.themoviedb.org/3/${viewType === 'movie' ? 'movie' : 'tv'}/${id}/recommendations?language=en-US&page=1`, options)
             .then(res => res.json())
             .then(data => {
-                console.log(data)
                 setResult(data.results)
             })
             .catch(err => console.error(err));

@@ -34,7 +34,6 @@ export default function Reviews({id}) {
         fetch(`https://api.themoviedb.org/3/${type === 'movie' ? 'movie' : 'tv'}/${id}/reviews?language=en-US&page=1`, options)
             .then(res => res.json())
             .then(data => {
-                console.log(data.results)
                 setReviews(data.results)
                 
             })
@@ -78,7 +77,6 @@ export default function Reviews({id}) {
                 console.error(error)
             }
             else {
-                console.log('review added')
                 setUserReview("")
                 setRating("")
             }
@@ -151,7 +149,6 @@ export default function Reviews({id}) {
                 table: 'reviews',
                 },
                 (payload) => {
-                console.log('New review:', payload.new);
                 setReceivedReviews((prev) => [...prev, payload.new]);
                 }
             )
@@ -183,7 +180,6 @@ export default function Reviews({id}) {
                 return
             }
             else {
-                console.log('review deleted')
                 setReceivedReviews(prev => prev.filter(r => r.id !== reviewId))
             }
         }
@@ -229,7 +225,7 @@ export default function Reviews({id}) {
            
             <div className="review-box">
                 {reversedReviews.map(reviews => (
-                    <div className="review-holder">
+                    <div className="review-holder" key={reviews.id}>
                         <div className="reviewer-details">
                             <img className="reviewer-pic" src={`https://placehold.co/160x160?text=${reviews.name.slice(0,1)}`}/>
                             <span className="cast-heading reviewer">{reviews.name}</span>

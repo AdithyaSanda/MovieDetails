@@ -22,11 +22,9 @@ export default function CastPage() {
 
 
     useEffect(() => {
-        console.log('Useeffect is running...')
         fetch(`https://api.themoviedb.org/3/person/${params.id}?language=en-US`, options)
             .then(res => res.json())
             .then(data => {
-                console.log(data)
                 setCastDetails(data)
             })
             .catch(err => console.error(err));
@@ -34,14 +32,13 @@ export default function CastPage() {
         fetch(`https://api.themoviedb.org/3/person/${params.id}/movie_credits?language=en-US`, options)
             .then(res => res.json())
             .then(res => {
-                console.log(res)
                 setMovieList(res.cast.filter(movie => movie.poster_path !== null))
                 setIsLoading(false)
             })
             .catch(err => console.error(err));
     }, [])
 
-    console.log(castDetails)
+
 
     return !isLoading ? (
         <>
@@ -73,14 +70,14 @@ export default function CastPage() {
                 {castDetails.also_known_as?.length ? <div className="also_known_as">
                     <span className="biography-heading also">Also Known As</span>
                     {castDetails.also_known_as?.map(name => (
-                        <span className="also_name">{name}</span>
+                        <span key={castDetails.id} className="also_name">{name}</span>
                     ))}
                 </div> : null}
                 <div className="popular-container recommendation-container acted-in">
                     <span className="biography-heading performed">Performed in</span>
                     <div className="recommended performed-posters">
                         {movieList.map(movie => (
-                            <div>
+                            <div key={movie.id}>
                                 <Link to={`/movies/${movie.id}`}>
                                     <img className="popular-movie-poster recommended-movie-poster" src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} alt={movie.title} />
                                     <span className="popular-movie-title">{movie.title || movie.name}</span>

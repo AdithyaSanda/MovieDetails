@@ -50,14 +50,19 @@ export default function MovieDetail({backdropCount, posterCount, videoCount}) {
     }, [location])
 
     useEffect(() => {
+        setIsLoading(true)
+        const timer = setTimeout(() => {
+            setIsLoading(false)
+        }, 1000)
         window.scrollTo(0,0)
+
+        return () => clearInterval(timer)
     },[location])
 
     useEffect(() => {
         fetch(`https://api.themoviedb.org/3/${type === 'movie' ? 'movie' : 'tv'}/${params.id}?language=en-US`, options)
             .then(res => res.json())
             .then(data => {
-                console.log(data)
                 setDetailHtml(
                     <>
                         <div className="detail-container">
@@ -130,7 +135,6 @@ export default function MovieDetail({backdropCount, posterCount, videoCount}) {
                 console.error(error)
             }
             else {
-                console.log('Movie added to watchlist')
                 setIsInWatchlist(true)
             }
         }

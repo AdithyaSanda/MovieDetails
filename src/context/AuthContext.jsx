@@ -13,7 +13,6 @@ export function AuthContextProvider({children}){
                 if(error) {
                     throw new error
                 }
-                console.log(data.session)
                 setSession(data.session)
             }
             catch(error) {
@@ -22,10 +21,13 @@ export function AuthContextProvider({children}){
         }
         getInitialSession()
 
-        supabase.auth.onAuthStateChange((_event, session) => {
+        const {data: {subscription}} = supabase.auth.onAuthStateChange((_event, session) => {
             setSession(session)
-            console.log(`session changed: ${session}`)
         })
+
+        return () => {
+            subscription.unsubscribe()
+        }
     }, [])
 
     const signinUser = async (email, password) => {
@@ -38,7 +40,6 @@ export function AuthContextProvider({children}){
                 console.error(`Supabase Sign-in error: `, error.message)
                 return {success: false, error: error.message}
             }
-            console.log(`Supabase sign-in success: `, data)
             return {success: true, data}
         }
         catch(error) {
@@ -90,7 +91,6 @@ export function AuthContextProvider({children}){
                 console.error(`Supabase Sign-up error: `, error.message)
                 return {success: false, error: error.message}
             }
-            console.log(`Supabase sign-up success: `, data)
 
             const userId = data.user?.id
             if(userId) {

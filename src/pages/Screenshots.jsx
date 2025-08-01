@@ -10,7 +10,6 @@ export default function Screenshots() {
         fetch(`https://api.rawg.io/api/games/${id}/screenshots?&key=${import.meta.env.VITE_RAWG_API}`)
             .then(res => res.json())
             .then(data => {
-                console.log(data)
                 setBackdrops(data.results)
             })
             .catch(err => console.error(err));

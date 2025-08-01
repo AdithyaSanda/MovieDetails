@@ -21,7 +21,6 @@ export default function Video({id, setVideoCount}) {
         fetch(`https://api.themoviedb.org/3/${type === 'movie' ? 'movie' : 'tv'}/${id}/videos?language=en-US`, options)
             .then(res => res.json())
             .then(data => {
-                console.log(data)
                 setVideos(data.results.slice(0, 21))
             })
             .catch(err => console.error(err));

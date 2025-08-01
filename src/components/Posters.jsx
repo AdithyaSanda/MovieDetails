@@ -22,14 +22,13 @@ export default function Posters({id, setPosterCount}) {
         fetch(`https://api.themoviedb.org/3/${type === 'movie' ? 'movie' : 'tv'}/${id}/images`, options)
             .then(res => res.json())
             .then(data => {
-                console.log(data)
                 setPosters(data.posters)
             })
             .catch(err => console.error(err));
     },[id])
 
     useEffect(() => {
-        setPosterCount(posters.length)
+        setPosterCount(posters?.length)
     }, [posters])
 
     return(

@@ -23,7 +23,6 @@ export default function ImageSlider({viewType, heading}) {
         fetch(`https://api.themoviedb.org/3/${viewType}/${heading}?language=en-US&page=1`, options)
             .then(res => res.json())
             .then(data => {
-                console.log(data)
                 setResult(data.results.filter(result => result.backdrop_path))
                 setIsLoading(false)
 

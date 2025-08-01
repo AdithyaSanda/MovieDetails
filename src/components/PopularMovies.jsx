@@ -14,7 +14,6 @@ export default function PopularMovies({viewType, type, name, show_movies, page, 
     const [isLoading, setIsLoading] = useState(true)
     const postersPerPage = 7
 
-    console.log(type)
 
     const options = {
         method: 'GET',
@@ -33,7 +32,6 @@ export default function PopularMovies({viewType, type, name, show_movies, page, 
             .then(res => res.json())
             .then(data => {
                 if(isActive) {
-                    console.log(data)
                     setResult(data.results)
                     setIsLoading(false)
                 }
@@ -63,7 +61,7 @@ export default function PopularMovies({viewType, type, name, show_movies, page, 
     }
 
     const visiblePosters = isDesktop ? result.slice(startIndex, startIndex + postersPerPage) : result
-    console.log(visiblePosters)
+
     
     return(
             <div className="popular-container">

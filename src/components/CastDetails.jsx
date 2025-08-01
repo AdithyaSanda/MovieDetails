@@ -21,7 +21,6 @@ export default function CastDetails({id}) {
         fetch(`https://api.themoviedb.org/3/${type === 'movie' ? 'movie' : 'tv'}/${id}/credits?language=en-US`, options)
             .then(res => res.json())
             .then(res => {
-                console.log(res)
                 setCast(res.cast)
                 setCrew(res.crew)
             })

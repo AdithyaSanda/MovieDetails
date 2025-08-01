@@ -69,7 +69,6 @@ export default  function Watchlist() {
             try {
                 const responses = await Promise.all(
                     watchlist.map(async (item) => {
-                        console.log(item)
                         const res = await fetch(`https://api.themoviedb.org/3/${item.type === 'movie' ? 'movie' : 'tv'}/${item.movie_id}?language=en-US`, options)
                         const data = await res.json()
                         return {...data, type: item.type}
@@ -97,7 +96,6 @@ export default  function Watchlist() {
                 table: 'watchlist',
                 },
                 (payload) => {
-                console.log('New review:', payload.new);
                 setList((prev) => [...prev, payload.new]);
                 }
             )
@@ -115,7 +113,6 @@ export default  function Watchlist() {
 
     async function handleDeleteWatchlist(movieId) {
         try {
-            console.log(movieId)
             const {error} = await supabase
             .from('watchlist')
             .delete()
@@ -126,7 +123,6 @@ export default  function Watchlist() {
                 return
             }
             else {
-                console.log('movie deleted')
                 setList(prev => prev.filter(r => r.id !== movieId))
             }
         }
@@ -135,7 +131,6 @@ export default  function Watchlist() {
         }
     }
 
-    console.log(list)
     return !isLoading ? (
         <>
             <h1 className="watchlist-heading">Watchlist</h1>  
