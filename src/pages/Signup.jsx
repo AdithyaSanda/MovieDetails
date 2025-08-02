@@ -2,7 +2,7 @@ import { useActionState, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { useAuth } from "../context/AuthContext"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faE, faEnvelope } from '@fortawesome/free-solid-svg-icons'
+import {faEnvelope } from '@fortawesome/free-solid-svg-icons'
 export default function Signup() {
 
     const {signUpNewUser} = useAuth()

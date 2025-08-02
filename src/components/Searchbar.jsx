@@ -2,7 +2,7 @@ import { useRef, useState } from "react"
 import Suggestions from "./Suggestions"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
-import { useLocation } from "react-router-dom"
+
 
 
 export default function Searchbar({type, isGame}) {

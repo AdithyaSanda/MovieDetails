@@ -1,11 +1,7 @@
 import Header from "./components/Header";
-import { BrowserRouter, Routes, Route, Navigate} from 'react-router-dom'
+import { Routes, Route, Navigate} from 'react-router-dom'
 import { useLocation } from "react-router-dom";
-// import Movies from "./pages/Movies";
-// import Shows from "./pages/Shows";
-// import Watchlist from "./pages/Watchlist";
 import { useState, useEffect, Suspense, lazy } from 'react'
-// import MovieDetail from "./pages/MovieDetail";
 import Backdrops from "./components/Backdrops";
 import Posters from "./components/Posters";
 import Video from "./components/Video";
