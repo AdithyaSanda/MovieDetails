@@ -148,7 +148,7 @@ export default  function Watchlist() {
                         {movie.id && <Link key={movie.id} to={`/${movie.type === 'movie' ? 'movie' : 'show'}s/${movie.id}`}>
                             <div className="suggestion-details">
                                 <div>
-                                    {movie.poster_path && <img className="suggestion-poster watchlist-poster" src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} alt={movie.title} />}
+                                    {movie.poster_path && <img className="suggestion-poster watchlist-poster" src={`https://image.tmdb.org/t/p/w185${movie.poster_path}`} alt={movie.title} />}
                                 </div>
                                 <div className="suggestion-movie-details">
                                     <span className="suggested-movie-title">{movie.title || movie.name} ({movie.release_date ? movie.release_date.slice(0, 4) : movie.first_air_date.slice(0, 4)})</span>

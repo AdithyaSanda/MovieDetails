@@ -14,7 +14,7 @@ export default function Navbar({isOpen, setIsOpen, setViewType, setIsGame}) {
         <div className={`side-bar ${isOpen ? 'open' : ''}`}>
             <Link to={'/movies'} onClick={() => setIsOpen(false)}>
                 <div className='logo-container nav-logo'>
-                    <img className='logo' src="/src/assets/logo1.png" alt="nextWatch" />
+                    <img className='logo' src="/src/assets/logo2.png" alt="nextWatch" />
                     <span className='logo-name'>NextWatch</span>
                 </div>
             </Link>

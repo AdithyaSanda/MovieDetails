@@ -1700,6 +1700,10 @@ a {
   .watchlist-btn {
     top: 10.237rem;
   }
+
+  .watchlist-btn {
+    left: 23.5%;
+  }
 }
 
 @media (min-height: 820px) and (min-width: 1200px) {
@@ -1766,7 +1770,9 @@ a {
   }
 } */
 
-@media (min-height: 1120px) {
+
+
+@media (min-height: 1120px) and (min-width: 1370px) {
   .director-detail {
     top: 53%;
   }
@@ -1776,7 +1782,7 @@ a {
   }
 }
 
-@media (min-height: 1200px) {
+@media (min-height: 1200px)  and (min-width: 1370px) {
   .suggestion-container {
     top: 37%;
   }

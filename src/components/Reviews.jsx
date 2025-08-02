@@ -161,7 +161,7 @@ export default function Reviews({id}) {
        
             
 
-    }, [])
+    }, [id])
 
 
 
@@ -246,7 +246,7 @@ export default function Reviews({id}) {
                 {reviews.map(review => (
                     <div className="review-holder" key={review.id}>
                         <div className="reviewer-details">
-                            <img className="reviewer-pic" src={review.author_details.avatar_path ? `https://image.tmdb.org/t/p/original${review.author_details.avatar_path}`: `https://placehold.co/160x160?text=${review.author.slice(0,1)}`}/>
+                            <img className="reviewer-pic" src={review.author_details.avatar_path ? `https://image.tmdb.org/t/p/w185${review.author_details.avatar_path}`: `https://placehold.co/160x160?text=${review.author.slice(0,1)}`}/>
                             <span className="cast-heading reviewer">{review.author}</span>
                         </div>
                         {review.author_details.rating ? <span className="rating-review"><span className="rating">Rating:</span> {review.author_details.rating}/10</span> : <span className="rating-review">Rating: N/A</span>}

@@ -19,7 +19,7 @@ export default function Recommendations({id, viewType}) {
         fetch(`https://api.themoviedb.org/3/${viewType === 'movie' ? 'movie' : 'tv'}/${id}/recommendations?language=en-US&page=1`, options)
             .then(res => res.json())
             .then(data => {
-                setResult(data.results)
+                setResult(data.results.filter(result => result.backdrop_path && result.poster_path))
             })
             .catch(err => console.error(err));
 
@@ -34,7 +34,7 @@ export default function Recommendations({id, viewType}) {
                             {result.map(res => (
                                 <div key={res.id}>
                                     <Link to={`/${viewType === 'movie' ? 'movie' : 'show'}s/${res.id}`}>
-                                        <img className="popular-movie-poster recommended-movie-poster" src={`https://image.tmdb.org/t/p/original${res.poster_path}`} alt={res.title} />
+                                        <img className="popular-movie-poster recommended-movie-poster" src={`https://image.tmdb.org/t/p/w185${res.poster_path}`} alt={res.title} />
                                         <span className="popular-movie-title">{res.title || res.name}</span>
                                     </Link>
                                 </div>

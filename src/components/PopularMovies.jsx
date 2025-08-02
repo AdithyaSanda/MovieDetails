@@ -72,7 +72,7 @@ export default function PopularMovies({viewType, type, name, show_movies, page, 
                         {isLoading ? (<SkeletonHolder count={postersPerPage}/>)  : visiblePosters.map(res => (
                             <div key={res.id}>
                                 <Link to={`/${viewType === 'tv' ? 'show' : 'movie'}s/${res.id}`}>
-                                    <img className="popular-movie-poster" src={`https://image.tmdb.org/t/p/original${res.poster_path}`} alt={res.title} />
+                                    <img className="popular-movie-poster" src={`https://image.tmdb.org/t/p/w185${res.poster_path}`} alt={res.title} />
                                     <span className="popular-movie-title">{res.title || res.name}</span>
                                 </Link>
                             </div>

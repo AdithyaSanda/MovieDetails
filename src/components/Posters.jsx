@@ -35,7 +35,7 @@ export default function Posters({id, setPosterCount}) {
         <div className="image-container">
             <div className="images">
                 {posters ? posters.map(poster => (
-                    <img key={poster.file_path} className="poster" src={`https://image.tmdb.org/t/p/original${poster.file_path}`} alt="" loading='lazy'/>
+                    <img key={poster.file_path} className="poster" src={`https://image.tmdb.org/t/p/w185${poster.file_path}`} alt="" loading='lazy'/>
                 )) : null}
             </div>
         </div>

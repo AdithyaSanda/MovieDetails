@@ -20,7 +20,7 @@ export default function Suggestions({movie, setVisible, setIsSearchOn, searchBar
         fetch(`https://api.themoviedb.org/3/search/${movieOrShow === 'movie' ? 'movie' : 'tv'}?query=${movie}&include_adult=false&language=en-US&page=1`, options)
             .then(res => res.json())
             .then(data => {
-                setMovieList(data.results.filter(result => result.backdrop_path))
+                setMovieList(data.results.filter(result => result.backdrop_path && result.poster_path))
             })
             .catch(err => console.error(err));
     }, [movie])
@@ -37,7 +37,7 @@ export default function Suggestions({movie, setVisible, setIsSearchOn, searchBar
                         to={`/${movieOrShow === 'movie' ? 'movies' : 'shows'}/${movie.id}`}
                     >
                         <div className="suggestion-details">
-                            <img className="suggestion-poster" src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} alt={movie.title} />
+                            <img className="suggestion-poster" src={`https://image.tmdb.org/t/p/w185${movie.poster_path}`} alt={movie.title} />
                             <div className="suggestion-movie-details">
                                 {movie.title || movie.name && <span className="suggested-movie-title">{movie.title || movie.name} ({movie.release_date ? movie.release_date.slice(0, 4) : movie.first_air_date.slice(0, 4)})</span>}
                                 <span className="suggested-movie-overview">{movie.overview}</span>

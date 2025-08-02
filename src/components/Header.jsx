@@ -51,7 +51,7 @@ export default function Header({isDesktop, viewType, setViewType, isGame, setIsG
                     </button>
                     <Link to={'/movies'}>
                         <div className='logo-container'>
-                            <img className='logo' src="/src/assets/logo1.png" alt="nextWatch" />
+                            <img className='logo' src="/src/assets/logo2.png" alt="nextWatch" />
                             <span className='logo-name'>NextWatch</span>
                         </div>
                     </Link>

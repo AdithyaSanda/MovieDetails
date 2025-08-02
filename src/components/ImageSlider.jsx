@@ -67,7 +67,7 @@ export default function ImageSlider({viewType, heading}) {
                 {result.map((res, index) => (
                     <Link key={res.id} to={`/${viewType === 'tv' ? 'show' : 'movie'}s/${res.id}`}>
                         <div className="now-playing" style={{translate: `${-100 * current}%`}}>
-                                <img key={index} src={`https://image.tmdb.org/t/p/original${res.backdrop_path}`} alt={res.title} />
+                                <img key={index} src={`https://image.tmdb.org/t/p/w1280${res.backdrop_path}`} alt={res.title}/>
                                 <span>{res.title || res.name} ({res.release_date ? res.release_date.slice(0, 4) : res.first_air_date.slice(0, 4)})</span>
                         </div>
                     </Link>

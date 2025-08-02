@@ -66,11 +66,11 @@ export default function MovieDetail({backdropCount, posterCount, videoCount}) {
                 setDetailHtml(
                     <>
                         <div className="detail-container">
-                            {data.backdrop_path ? <img className="backdrop-detail" src={`https://image.tmdb.org/t/p/original${data.backdrop_path}`} alt={data.title} /> : <img className="backdrop-detail" src={`https://placehold.co/430x242?text=${data.title}`} alt="" />}
+                            {data.backdrop_path ? <img className="backdrop-detail" src={`https://image.tmdb.org/t/p/w780${data.backdrop_path}`} alt={data.title} /> : <img className="backdrop-detail" src={`https://placehold.co/430x242?text=${data.title}`} alt="" />}
                             <div className="gray-overlay">
                                 
                             </div>
-                            {data.poster_path ? <img className="poster-detail" src={`https://image.tmdb.org/t/p/original${data.poster_path}`} alt={data.title} /> : <img className="backdrop-detail" src={`https://placehold.co/150x225?text=${data.title}`} alt="" />}
+                            {data.poster_path ? <img className="poster-detail" src={`https://image.tmdb.org/t/p/w185${data.poster_path}`} alt={data.title} /> : <img className="backdrop-detail" src={`https://placehold.co/150x225?text=${data.title}`} alt="" />}
                             <span className="title-detail">{data.title || data.name} ({data.release_date ? data.release_date.slice(0, 4) : data.first_air_date.slice(0, 4)})</span>
                             
                         </div>
@@ -161,7 +161,7 @@ export default function MovieDetail({backdropCount, posterCount, videoCount}) {
 
         isAddedToWatchlist()
 
-    }, [])
+    }, [params.id])
 
 
 

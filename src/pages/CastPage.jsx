@@ -36,7 +36,7 @@ export default function CastPage() {
                 setIsLoading(false)
             })
             .catch(err => console.error(err));
-    }, [])
+    }, [params.id])
 
 
 
@@ -44,7 +44,7 @@ export default function CastPage() {
         <>
             
             <div className="cast-name-photo">
-                {castDetails.profile_path ? <img className="cast-photo" src={`https://image.tmdb.org/t/p/original${castDetails.profile_path}`} alt="" /> : <img className="cast-photo" src={`https://placehold.co/150x225?text=${castDetails.name}`} alt="" />}
+                {castDetails.profile_path ? <img className="cast-photo" src={`https://image.tmdb.org/t/p/w500${castDetails.profile_path}`} alt="" /> : <img className="cast-photo" src={`https://placehold.co/150x225?text=${castDetails.name}`} alt="" />}
                 <h1 className="cast-title">{castDetails.name}</h1>
             </div>
             <div className="cast-detail">
@@ -79,7 +79,7 @@ export default function CastPage() {
                         {movieList.map(movie => (
                             <div key={movie.id}>
                                 <Link to={`/movies/${movie.id}`}>
-                                    <img className="popular-movie-poster recommended-movie-poster" src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} alt={movie.title} />
+                                    <img className="popular-movie-poster recommended-movie-poster" src={`https://image.tmdb.org/t/p/w185${movie.poster_path}`} alt={movie.title} loading="lazy"/>
                                     <span className="popular-movie-title">{movie.title || movie.name}</span>
                                 </Link>
                             </div>
