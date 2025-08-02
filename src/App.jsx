@@ -1,11 +1,11 @@
 import Header from "./components/Header";
 import { BrowserRouter, Routes, Route, Navigate} from 'react-router-dom'
 import { useLocation } from "react-router-dom";
-import Movies from "./pages/Movies";
-import Shows from "./pages/Shows";
-import Watchlist from "./pages/Watchlist";
-import { useState, useEffect } from 'react'
-import MovieDetail from "./pages/MovieDetail";
+// import Movies from "./pages/Movies";
+// import Shows from "./pages/Shows";
+// import Watchlist from "./pages/Watchlist";
+import { useState, useEffect, Suspense, lazy } from 'react'
+// import MovieDetail from "./pages/MovieDetail";
 import Backdrops from "./components/Backdrops";
 import Posters from "./components/Posters";
 import Video from "./components/Video";
@@ -14,8 +14,13 @@ import Signup from "./pages/Signup";
 import ProtectedRoute from "./components/ProtectedRoute";
 import CastPage from "./pages/CastPage";
 import ErrorPage from "./pages/ErrorPage";
+import LoadingPage from "./pages/LoadingPage";
 
 
+const Movies = lazy(() => import('./pages/Movies.jsx'))
+const Shows = lazy(() => import('./pages/Shows.jsx'))
+const MovieDetail = lazy(() => import('./pages/MovieDetail.jsx'))
+const Watchlist = lazy(() => import('./pages/Watchlist.jsx'))
 
 
 export default function App() {
@@ -45,35 +50,37 @@ export default function App() {
            
             <Header isGame={isGame} setIsGame={setIsGame} viewType={viewType} setViewType={setViewType} isDesktop={isDesktop}/>
        
-            <Routes>
-                
-                <Route path="/" element={<Navigate to="/movies"/>}/>
-                <Route path="/signin" element={<Signin />}/>
-                <Route path="/signup" element={<Signup />}/>
-                
-                <Route path="/movies" element={<Movies isDesktop={isDesktop} viewType={viewType} setViewType={setViewType}/>}/>
-                <Route path="/movies/:id" element={<MovieDetail viewType={viewType} backdropCount={backdropCount} posterCount={posterCount} videoCount={videoCount}/>}>
-                    <Route index element={<Backdrops id={location.pathname.slice(8)} setBackdropCount={setBackdropCount}/>}/>
-                    <Route path="posters" element={<Posters id={location.pathname.slice(8,15)} setPosterCount={setPosterCount}/>}/>
-                    <Route path="videos" element={<Video id={location.pathname.slice(8,15)} setVideoCount={setVideoCount}/>}/>
-                </Route>
-                <Route path="/shows" element={<Shows isDesktop={isDesktop} viewType={viewType} setViewType={setViewType}/>}/>
-                <Route path="/shows/:id" element={<MovieDetail viewType={viewType} backdropCount={backdropCount} posterCount={posterCount} videoCount={videoCount}/>}>
-                    <Route index element={<Backdrops id={location.pathname.slice(7)} setBackdropCount={setBackdropCount}/>}/>
-                    <Route path="posters" element={<Posters id={location.pathname.slice(7,11)} setPosterCount={setPosterCount}/>}/>
-                    <Route path="videos" element={<Video id={location.pathname.slice(7,11)} setVideoCount={setVideoCount}/>}/>
-                </Route>
-                <Route path="/person/:id" element={<CastPage />}/>
-                <Route path="/watchlist" element={
-                    <ProtectedRoute>
-                        <Watchlist />
-                    </ProtectedRoute>
+            <Suspense fallback={<LoadingPage />}>
+
+                <Routes>
                     
-                } />
-               <Route path="*" element={<ErrorPage />}/>
-                
-            </Routes>
-            
+                    <Route path="/" element={<Navigate to="/movies"/>}/>
+                    <Route path="/signin" element={<Signin />}/>
+                    <Route path="/signup" element={<Signup />}/>
+                    
+                    <Route path="/movies" element={<Movies isDesktop={isDesktop} viewType={viewType} setViewType={setViewType}/>}/>
+                    <Route path="/movies/:id" element={<MovieDetail viewType={viewType} backdropCount={backdropCount} posterCount={posterCount} videoCount={videoCount}/>}>
+                        <Route index element={<Backdrops id={location.pathname.slice(8)} setBackdropCount={setBackdropCount}/>}/>
+                        <Route path="posters" element={<Posters id={location.pathname.slice(8,15)} setPosterCount={setPosterCount}/>}/>
+                        <Route path="videos" element={<Video id={location.pathname.slice(8,15)} setVideoCount={setVideoCount}/>}/>
+                    </Route>
+                    <Route path="/shows" element={<Shows isDesktop={isDesktop} viewType={viewType} setViewType={setViewType}/>}/>
+                    <Route path="/shows/:id" element={<MovieDetail viewType={viewType} backdropCount={backdropCount} posterCount={posterCount} videoCount={videoCount}/>}>
+                        <Route index element={<Backdrops id={location.pathname.slice(7)} setBackdropCount={setBackdropCount}/>}/>
+                        <Route path="posters" element={<Posters id={location.pathname.slice(7,11)} setPosterCount={setPosterCount}/>}/>
+                        <Route path="videos" element={<Video id={location.pathname.slice(7,11)} setVideoCount={setVideoCount}/>}/>
+                    </Route>
+                    <Route path="/person/:id" element={<CastPage />}/>
+                    <Route path="/watchlist" element={
+                        <ProtectedRoute>
+                            <Watchlist />
+                        </ProtectedRoute>
+                        
+                    } />
+                <Route path="*" element={<ErrorPage />}/>
+                    
+                </Routes>
+            </Suspense>
         </>
     )
 }
