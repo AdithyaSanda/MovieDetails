@@ -35,7 +35,7 @@ export default function Backdrops({id, setBackdropCount}) {
             <div className="images">
                 {backdrops.map(backdrop => (
                     <div key={backdrop.file_path}>
-                        <img className="backdrop" src={`https://image.tmdb.org/t/p/original${backdrop.file_path}`} alt="" />
+                        <img className="backdrop" src={`https://image.tmdb.org/t/p/original${backdrop.file_path}`} alt="" loading="lazy"/>
                     </div>
                 ))}
             </div>
