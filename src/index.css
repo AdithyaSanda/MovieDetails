@@ -660,6 +660,25 @@ a {
   margin-left: 10px;
 }
 
+.watchlist-placeholder {
+  display: flex;
+  flex-direction: column;
+  height: 66vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.film-icon {
+  font-size: 5rem;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+.placeholder-text {
+  font-size: 1.1rem;
+  color: #555;
+}
+
 .review-form {
   display: flex;
   flex-direction: column;

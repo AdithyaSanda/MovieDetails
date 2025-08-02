@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import supabase from "../supabase-client"
 import { Link } from "react-router-dom"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faTrash, faFilm } from '@fortawesome/free-solid-svg-icons'
 import { useAuth } from "../context/AuthContext"
 import LoadingPage from "./LoadingPage"
 
@@ -64,7 +64,10 @@ export default  function Watchlist() {
     useEffect(() => {
 
         async function getMovieDetails() {
-            if(watchlist.length === 0) return
+            if(watchlist.length === 0) {
+                setIsLoading(false)
+                return
+            }
             
             try {
                 const responses = await Promise.all(
@@ -133,9 +136,9 @@ export default  function Watchlist() {
 
     return !isLoading ? (
         <>
-            <h1 className="watchlist-heading">Watchlist</h1>  
+            {list?.length ? <h1 className="watchlist-heading">Watchlist</h1> : null }
             <div className="watchlist-container">
-                <div className="watchlist">
+                {list?.length ? <div className="watchlist">
                     {list.map(movie => (
                         <>
                         {movie.id && <button className="delete-review-btn" onClick={(e) => {
@@ -162,7 +165,11 @@ export default  function Watchlist() {
                         
                         
                     ))}
-                </div>
+                </div> : 
+                <div className="watchlist-placeholder">
+                    <FontAwesomeIcon className="film-icon" icon={faFilm}/>
+                    <span className="placeholder-text">Add Something to Watch!</span>
+                </div>}
             </div>
         </>
         
