@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import {Link, useParams} from 'react-router-dom'
-import ShowMoreText from 'react-show-more-text'
+import ShowMoreText from "../components/ShowMoreText";
 import LoadingPage from "./LoadingPage";
 
 
@@ -59,13 +59,7 @@ export default function CastPage() {
             <div className="bio-container">
                 {castDetails.biography && <div className="biography-container">
                     <span className="biography-heading">Biography</span>
-                    <ShowMoreText
-                        lines={4}
-                        className="review biography"
-                        anchorClass="review-link"
-                    >
-                        {castDetails.biography}
-                    </ShowMoreText>
+                    <ShowMoreText style='biography' text={castDetails.biography} maxChars={550}/>
                 </div>}
                 {castDetails.also_known_as?.length ? <div className="also_known_as">
                     <span className="biography-heading also">Also Known As</span>

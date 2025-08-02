@@ -627,6 +627,7 @@ a {
   font-weight: bold;
   cursor: pointer;
   text-decoration: underline;
+  margin-left: 5px;
 }
 
 .reviewer-pic {

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import ShowMoreText from 'react-show-more-text'
+import ShowMoreText from "./ShowMoreText";
 import { useLocation } from "react-router-dom"
 import supabase from "../supabase-client";
 import { useAuth } from "../context/AuthContext";
@@ -234,13 +234,7 @@ export default function Reviews({id}) {
                                 </button>}
                         </div>
                         <span className="rating-review"><span className="rating">Rating:</span> {reviews.rating}/10</span>
-                        <ShowMoreText
-                            lines={4}
-                            className="review"
-                            anchorClass="review-link"
-                        >
-                            {reviews.review}
-                        </ShowMoreText>
+                        <ShowMoreText text={reviews.review} maxChars={580}/>
                     </div>
                 ))}
                 {reviews.map(review => (
@@ -253,13 +247,7 @@ export default function Reviews({id}) {
 
 
                         
-                        <ShowMoreText
-                            lines={4}
-                            className="review"
-                            anchorClass="review-link"
-                        >
-                            {review.content}
-                        </ShowMoreText>
+                        <ShowMoreText text={review.content} maxChars={580}/>
 
 
                         
