@@ -57,7 +57,7 @@ export default function MovieDetail({backdropCount, posterCount, videoCount}) {
         window.scrollTo(0,0)
 
         return () => clearInterval(timer)
-    },[location])
+    },[params.id])
 
     useEffect(() => {
         fetch(`https://api.themoviedb.org/3/${type === 'movie' ? 'movie' : 'tv'}/${params.id}?language=en-US`, options)
