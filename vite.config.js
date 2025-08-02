@@ -8,9 +8,9 @@ export default defineConfig({
     host: true,
     port: 5173
   },
-  build: {
-    rollupOptions: {
-      external: ['@supabase/supabase-js']
-    }
-  }
+  // build: {
+  //   rollupOptions: {
+  //     external: ['@supabase/supabase-js']
+  //   }
+  // }
 })
