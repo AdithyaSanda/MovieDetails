@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
 import {Link} from 'react-router-dom'
-
+import logo from '/src/assets/logo2.png'
 import NavItems from './NavItems'
 
 
@@ -14,7 +14,7 @@ export default function Navbar({isOpen, setIsOpen, setViewType, setIsGame}) {
         <div className={`side-bar ${isOpen ? 'open' : ''}`}>
             <Link to={'/movies'} onClick={() => setIsOpen(false)}>
                 <div className='logo-container nav-logo'>
-                    <img className='logo' src="/src/assets/logo2.png" alt="nextWatch" />
+                    <img className='logo' src={logo} alt="nextWatch" />
                     <span className='logo-name'>NextWatch</span>
                 </div>
             </Link>

@@ -8,6 +8,7 @@ import NavItems from './NavItems'
 import Suggestions from './Suggestions'
 import { useAuth } from '../context/AuthContext'
 import { Link, useNavigate } from 'react-router-dom'
+import logo from '/src/assets/logo2.png'
 
 
 export default function Header({isDesktop, viewType, setViewType, isGame, setIsGame}) {
@@ -51,7 +52,7 @@ export default function Header({isDesktop, viewType, setViewType, isGame, setIsG
                     </button>
                     <Link to={'/movies'}>
                         <div className='logo-container'>
-                            <img className='logo' src="/src/assets/logo2.png" alt="nextWatch" />
+                            <img className='logo' src={logo} alt="nextWatch" />
                             <span className='logo-name'>NextWatch</span>
                         </div>
                     </Link>
